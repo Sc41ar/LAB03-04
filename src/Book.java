@@ -5,7 +5,7 @@ public class Book {
     private Author author;
     private Publisher publisher;
     private int publisherYear;
-    public String name;
+    private String name;
 
     Book(){
         genre = new Genre("Детектив");
@@ -33,12 +33,11 @@ public class Book {
         publisherYear = year;
     }
 
-    void Output () throws UnsupportedEncodingException
-    {
+    void Output() throws UnsupportedEncodingException {
         PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, "Cp866"), true);
-        pw.println("Вывод информации о книге \"" + name + "\" жанр: " + genre.genreName
-        + "автор: " + author.name + " издатель: "
-                + publisher.name
+        pw.println("Вывод информации о книге \"" + name + "\" жанр: " + genre.GetName()
+                + "автор: " + author.GetName() + " издатель: "
+                + publisher.GetName()
                 + " год публикации: " + publisherYear);
     }
 
@@ -49,14 +48,26 @@ public class Book {
             System.out.println("Введите информацию о книге в следующем порядке: "
                     + "\nназвание\nжанр\nавтор\nиздатель\nгод издания");
             name = scan.readLine();
-            genre.genreName = scan.readLine();
-            author.name = scan.readLine();
-            publisher.name = scan.readLine();
-            publisherYear = Integer.parseInt(scan.readLine());
-        }
-        catch (Exception e)
-        {
+            genre.SetName(scan.readLine());
+            author.SetName(scan.readLine());
+            publisher.SetName(scan.readLine());
+            String year = scan.readLine();
+            while (!IsNumber(year)) {
+                System.out.println("Введите год издания в формате числа");
+                year = scan.readLine();
+            }
+            publisherYear = Integer.parseInt(year);
+        } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    private static boolean IsNumber(String s) {
+        try {
+            int a = Integer.parseInt(s);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

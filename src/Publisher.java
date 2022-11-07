@@ -1,11 +1,19 @@
 public class Publisher {
-    public String name;
+    private String name;
 
-    Publisher(){
+    Publisher() {
         name = "PublisherName.Zarya";
     }
 
-    Publisher(String inputName){
-        name = inputName;
+    Publisher(String name) {
+        this.name = name;
+    }
+
+    public void SetName(String name) {
+        this.name = name;
+    }
+
+    public String GetName() {
+        return name;
     }
 }
