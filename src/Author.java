@@ -1,12 +1,21 @@
 public class Author {
-    public String name;
+    private String name;
 
     Author(){
         name = "John";
     }
 
-    Author(String inputName){
-        name = inputName;
+    Author(String name){
+        this.name = name;
     }
 
+    public void SetName(String name)
+    {
+        this.name = name;
+    } 
+
+    public String GetName()
+    {
+        return name;
+    }
 }
